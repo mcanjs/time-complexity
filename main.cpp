@@ -40,6 +40,7 @@ int searchNumberWithoutAlgorithm (int expectedN) {
 }
 
 int main () {
+    bool withAlgorithm = true;
     int expected;
     std::cout << "Please enter number (1-100)" << '\n';
     std::cin >> expected;
@@ -50,26 +51,21 @@ int main () {
     if ( expected > 100 || expected < 0 )  {
         std::cout << "Enter number between 1 and 100" << '\n';
     } else {
-        int size = sizeof(number) / sizeof(number[0]);
-        int search = binarySearch(expected, 0, size - 1);
+        if ( withAlgorithm ) {
+            int size = sizeof(number) / sizeof(number[0]);
+            int search = binarySearch(expected, 0, size - 1);
 
-        if ( search == -1 )
-            std::cout << "Not fount expected value" << '\n';
-        else
-            std::cout << "Element is found at index : " << search << '\n';
+            if ( search == -1 )
+                std::cout << "Not fount expected value" << '\n';
+            else
+                std::cout << "Element is found at index : " << search << '\n';
+        } else {
+            int search = searchNumberWithoutAlgorithm(expected);
+
+            if ( search == -1 )
+                std::cout << "Not fount expected value" << '\n';
+            else
+                std::cout << "Element is found at index : " << search << '\n';
+        }
     }
-
-    /*
-        Without Binary Search
-    */
-   if ( expected > 100 || expected < 0 ) {
-    std::cout << "Enter number between 1 and 100" << '\n';
-   } else {
-        int search = searchNumberWithoutAlgorithm(expected);
-
-     if ( search == -1 )
-            std::cout << "Not fount expected value" << '\n';
-        else
-            std::cout << "Element is found at index : " << search << '\n';
-   }
 }
